@@ -22,7 +22,7 @@ def authenticate():
         raise Exception("Authentication failed.")
 
 
-def get_pre_signed_data(auth_token, file_type, file_name):
+def get_pre_signed_data(auth_token, file_type, file_name, file_description, original_file_name):
     upload_url = f"{URL}/files/upload"
     upload_headers = {
         "Authorization": f"JWT {auth_token}",
@@ -31,6 +31,8 @@ def get_pre_signed_data(auth_token, file_type, file_name):
     upload_payload = {
         "fileName": file_name,
         "productType": file_type,
+        "fileDescription": file_description,
+        "originalFileName": original_file_name
     }
 
     upload_details = requests.post(upload_url, headers=upload_headers, json=upload_payload)
@@ -41,13 +43,13 @@ def get_pre_signed_data(auth_token, file_type, file_name):
         raise Exception("Failed to get upload details.")
 
 
-def upload_file(file_type, file_path, file_name):
+def upload_file(file_type, file_path, file_name, file_description, original_file_name):
     try:
         # geta an authentication token by providing credentials
         auth_token = authenticate()
 
         # get pre-signed data to upload file to AWS s3
-        pre_signed_data = get_pre_signed_data(auth_token, file_type, file_name)
+        pre_signed_data = get_pre_signed_data(auth_token, file_type, file_name, file_description, original_file_name)
 
         # Extract url and fields from the pre-signed data response
         url = pre_signed_data['url']

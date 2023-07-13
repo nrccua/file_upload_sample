@@ -9,5 +9,8 @@
     * file_type = "enrollment"  # Replace with the desired file type
     * file_path = "sample.csv"  # Replace with the path to your file
     * file_name = "sample.csv"  # Replace with the desired file name
+    * file_description = "Some description for this file"  # Option file description
+    * original_fileName = "testFile.csv" #File name from the original file uploaded. Signed URL will be generated to save file with this name.
+
 
 * Run `python main.py`
