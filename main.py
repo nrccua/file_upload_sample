@@ -1,16 +1,12 @@
-# This is a sample Python script.
+from file_upload_sample import upload_file
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+try:
+    # Usage:
+    file_type = "enrollment"  # Replace with the desired file type
+    file_path = "sample.csv"  # Replace with the path to your file
+    file_name = "sample.csv"  # Replace with the desired file name
 
+    upload_file(file_type, file_path, file_name)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+except Exception as e:
+    print(f"Error: {str(e)}")
